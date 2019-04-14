@@ -1,0 +1,12 @@
+version: 0.2  
+phases:  
+  install:
+    commands:
+      - pip install --upgrade pip
+      - pip install pipenv --user
+      - pipenv install awscli aws-sam-cli
+      - pipenv run sam package --template-file template.yml --s3-bucket def-s3-bkt --output-template-file packaged-template.yml
+artifacts: 
+  type: zip
+  files:
+    - packaged-template.yml
